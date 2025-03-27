@@ -3,7 +3,9 @@
 import express from 'express'
 const router = express.Router()
 
-router.get('/product' ,() => {})
+router.get('/product' ,(req,res) => {
+    res.json({message:"Hello Nigga"})
+})
 router.get("/product/:id", () => {});
 router.put("/product/:id", () => {});
 router.post("/product", () => {});
