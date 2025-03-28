@@ -4,6 +4,8 @@ import morgan from 'morgan';
 import cors from 'cors'
 import * as dotenv from "dotenv";
 import { protect } from './modules/auth';
+import { createUser, signin } from './handlers/user';
+
 dotenv.config();
 
 const app = express();
@@ -19,6 +21,8 @@ app.use(express.urlencoded({extended:true}))
 
 // Basic route
 app.use('/api',protect, router);
+app.post('/user',createUser)
+app.post('/signin',signin)
 
 // Start the server
 app.listen(PORT, () => {

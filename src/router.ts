@@ -2,12 +2,20 @@
 
 import express from 'express'
 const router = express.Router()
+import { body, validationResult } from "express-validator";
 
 router.get('/product' ,(req,res) => {
     res.json({message:"Hello Nigga"})
 })
 router.get("/product/:id", () => {});
-router.put("/product/:id", () => {});
+router.post("/product/:id", body("name").isString(), (req, res) => {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    res.status(400);
+    res.json({ errors: errors.array() });
+  }
+});
 router.post("/product", () => {});
 router.delete("/product/:id", () => {});
 
