@@ -23,6 +23,10 @@ app.use(express.urlencoded({extended:true}))
 app.use('/api',protect, router);
 app.post('/user',createUser)
 app.post('/signin',signin)
+app.use((err,req,res,next) => {
+    console.log(err);
+    res.json({message:"Error invalid credentials"})
+})
 
 // Start the server
 app.listen(PORT, () => {
