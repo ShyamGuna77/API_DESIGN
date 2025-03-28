@@ -5,15 +5,18 @@ const router = express.Router()
 import { body, validationResult } from "express-validator";
 import { handleInputErrors } from './modules/middleware';
 import { createUpdate, deleteUpdate, updateUpdate } from './handlers/update';
-import { deleteProduct, getOneProduct, getProducts } from './handlers/product';
+import { createProduct, deleteProduct, getOneProduct, getProducts } from './handlers/product';
 
 router.get('/product' ,getProducts)
 
 router.get("/product/:id", getOneProduct);
-router.post("/product/:id", body("name").isString(), handleInputErrors,(req,res)=>{
-
-});
-router.post("/product",body('name').isString(),handleInputErrors, );
+router.post("/product/:id", body("name").isString(), handleInputErrors);
+router.post(
+  "/product",
+  body("name").isString(),
+  handleInputErrors,
+  createProduct
+);
 router.delete("/product/:id", deleteProduct);
 
 //Update Routes
